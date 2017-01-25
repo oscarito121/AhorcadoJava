@@ -31,6 +31,32 @@ int numeroFallos=0;
         // dibujamos la imagen del ahorcado sin fallos 
         dibujaImagen(0);
     }
+        private void chequeaLetra(String letra){
+    letra=letra.toUpperCase();
+    
+  //  String palabraConGuiones  = pantalla.getText();
+    StringBuilder  palabraConGuiones  =  new StringBuilder (pantalla.getText());
+    if(palabraOculta.contains(letra)){
+  
+        for (int i=0; i <palabraOculta.length(); i++){
+         if(palabraOculta.charAt(i) == letra.charAt(0)){
+      palabraConGuiones.setCharAt(2*i, letra.charAt(0));
+         }
+    
+    }
+        pantalla.setText(palabraConGuiones.toString());
+    }
+    else {
+    
+        numeroFallos++;
+        dibujaImagen(numeroFallos);
+    }
+      }
+      private void chequeaBoton(JButton miBoton){
+          miBoton.setEnabled(false);
+          chequeaLetra(miBoton.getText());
+      }
+    
     private void dibujaImagen(int numeroFallos){
     ImageIcon  miImagen=null;
     URL nombreImagen= null;
@@ -425,32 +451,7 @@ int numeroFallos=0;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-      private void chequeaLetra(String letra){
-    letra=letra.toUpperCase();
-    
-  //  String palabraConGuiones  = pantalla.getText();
-    StringBuilder  palabraConGuiones  =  new StringBuilder (pantalla.getText());
-    if(palabraOculta.contains(letra)){
   
-        for (int i=0; i <palabraOculta.length(); i++){
-         if(palabraOculta.charAt(i) == letra.charAt(0)){
-      palabraConGuiones.setCharAt(2*i, letra.charAt(0));
-         }
-    
-    }
-        pantalla.setText(palabraConGuiones.toString());
-    }
-    else {
-    
-        numeroFallos++;
-        dibujaImagen(numeroFallos);
-    }
-      }
-      private void chequeaBoton(JButton miBoton){
-          miBoton.setEnabled(false);
-          chequeaLetra(miBoton.getText());
-      }
-    
     
     private void letraBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_letraBActionPerformed
         // TODO add your handling code here:
